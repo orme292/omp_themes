@@ -1,9 +1,41 @@
 $schema: https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
 final_space: true
 version: 3
+palette:
+  alert: "#E63946"
+  white: "#FFFFFF"
+  vwhite: "#E5E5E5"
+  ltwhite: "#E8F1F2"
+  yellor: "#FCA311"
+  ssh-fg: "#14213D"
+  mgreen: "#3DA35D"
+  blublack: "#0E131F"
+  drkblue: "#13293D"
+  gitblue: "#3D3B8E"
+  gitdkblue: "#2A2865"
+  gitbehind: "#5D2A42"
+  gitahead: "#134611"
+  txtblue: "#14213D"
+  time: "#007ACC"
+  env-fg: "#F1EDEE"
+  env-bg: "#26413C"
+  python: "#427B21"
 blocks:
   - type: rprompt
     segments:
+    - type: project
+      style: powerline
+      powerline_symbol: ""  
+      foreground: p:env-fg
+      background: p:env-bg  
+    - type: python
+      style: powerline
+      powerline_symbol: 
+      background: p:python
+      properties:
+        fetch_virtual_env: true
+        fetch_version: true
+      template: "{{ if .Error }} {{ .Error }} {{ else }} Python {{ .Full }} {{ end }}"
     - type: executiontime
       style: powerline
       powerline_symbol: ""
@@ -11,32 +43,83 @@ blocks:
         threshold: 100
         style: austin
         always_enabled: false
-      background: "#14213D"
-      foreground: "#E5E5E5"
+      foreground: p:txtblue
+      background: p:vwhite
     - type: time
       style: plain
       properties:
-        time_format: 15:04:05
-      foreground: "#007ACC"
+        time_format: 3:04:05PM
+      foreground: p:time
       template: " {{ .CurrentDate | date .Format }} "
   - type: prompt
     newline: true
     alignment: left
     segments:
+      - type: root
+        style: powerline
+        powerline_symbol: ""
+        leading_diamond: "\ue0c5"
+        foreground: p:white
+        background: p:alert
       - type: session
         style: powerline
         powerline_symbol: ""
         leading_diamond: "\ue0c5"
         foreground_templates: 
-          - "{{if .SSHSession}}#14213D{{end}}"
+          - "{{if .SSHSession}}p:ssh-fg{{end}}"
         background_templates: 
-          - "{{if .SSHSession}}#FCA311{{end}}"
-        foreground: "#3DA35D"
-        background: "#0E131F"
+          - "{{if .SSHSession}}p:yellor{{end}}"
+        foreground: p:mgreen
+        background: p:blublack
         template: "{{ if .SSHSession }} {{ .UserName }}@{{ .HostName }} {{ else }} {{.HostName}} {{ end }}"
       - type: path
         style: powerline
         powerline_symbol: ""
-        foreground: "#E8F1F2"
-        background: "#13293D"
-        template: " {{ .AbsolutePWD }} "
+        properties:
+          style: agnoster_short
+          display_root: true
+          max_depth: 4
+        foreground: p:ltwhite
+        background: p:drkblue
+      - type: git
+        style: powerline
+        powerline_symbol: ""
+        leading_diamond: "\ue0c5"
+        background: p:gitblue
+        foreground: p:ltwhite
+        template: " \uE0A0 {{ .Ref }}{{ if gt .StashCount 0 }}*{{end}}{{ if gt .Working.Untracked 0 }}?{{ end }} "
+        properties:
+          fetch_status: true
+          fetch_upstream_icon: true
+          source: cli
+      - type: git
+        style: powerline
+        powerline_symbol: ""
+        leading_diamond: "\ue0c5"
+        background: p:gitahead
+        foreground: p:ltwhite
+        template: "{{ if gt .Ahead 0 }}\u2191{{ .Ahead }}{{ end }}"
+        properties:
+          fetch_status: true
+          source: cli
+      - type: git
+        style: powerline
+        powerline_symbol: ""
+        leading_diamond: "\ue0c5"
+        background: p:gitbehind
+        foreground: p:ltwhite
+        template: "{{ if gt .Behind 0 }}\u2193{{ .Behind }}{{ end }}"
+        properties:
+          fetch_status: true
+          source: cli
+      - type: git
+        style: powerline
+        powerline_symbol: ""
+        leading_diamond: "\ue0c5"
+        background: p:gitdkblue
+        foreground: p:ltwhite
+        template: "{{ if gt .Staging.Added 0 }} +{{ .Staging.Added }}{{ end }}{{ if gt .Staging.Modified 0 }} ~{{ .Staging.Modified }} {{ end }}"
+        properties:
+          fetch_status: true
+          source: cli
+
