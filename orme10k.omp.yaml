@@ -4,40 +4,39 @@ version: 3
 blocks:
   - type: rprompt
     segments:
+    - type: executiontime
+      style: powerline
+      powerline_symbol: ""
+      properties:
+        threshold: 100
+        style: austin
+        always_enabled: false
+      background: "#14213D"
+      foreground: "#E5E5E5"
     - type: time
-      foreground: "#007ACC"
       style: plain
       properties:
         time_format: 15:04:05
+      foreground: "#007ACC"
       template: " {{ .CurrentDate | date .Format }} "
   - type: prompt
     newline: true
     alignment: left
     segments:
-      - type: os
-        style: powerline
-        powerline_symbol: ""
-        template: "{{ .Icon }}"
-        foreground: "#3DA35D"
-        background: "#0E131F"
-        foreground_templates: 
-          - "{{if .SSHSession}}#14213D{{end}}"
-        background_templates: 
-          - "{{if .SSHSession}}#FCA311{{end}}"
       - type: session
         style: powerline
         powerline_symbol: ""
         leading_diamond: "\ue0c5"
-        template: "{{ if .SSHSession }} {{ .UserName }}@{{ .HostName }} {{ else }} {{.HostName}} {{ end }}"
         foreground_templates: 
           - "{{if .SSHSession}}#14213D{{end}}"
         background_templates: 
           - "{{if .SSHSession}}#FCA311{{end}}"
         foreground: "#3DA35D"
         background: "#0E131F"
+        template: "{{ if .SSHSession }} {{ .UserName }}@{{ .HostName }} {{ else }} {{.HostName}} {{ end }}"
       - type: path
         style: powerline
-        template: " {{ .AbsolutePWD }} "
         powerline_symbol: ""
         foreground: "#E8F1F2"
         background: "#13293D"
+        template: " {{ .AbsolutePWD }} "
