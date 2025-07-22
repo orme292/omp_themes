@@ -1,0 +1,29 @@
+$schema: https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+final_space: true
+version: 3
+blocks:
+  - type: rprompt
+    segments:
+    - type: time
+      foreground: "#007ACC"
+      style: plain
+      properties:
+        time_format: 15:04:05
+      template: " {{ .CurrentDate | date .Format }} "
+  - type: prompt
+    newline: true
+    alignment: left
+    segments:
+      - type: session
+        style: powerline
+        leading_diamond: "\ue0c5"
+        template: " {{ if .SSHSession }} {{ .UserName}}@{{ end }}{{ .HostName }} "
+        powerline_symbol: ""
+        foreground: "#E8F1F2"
+        background: "#006494"
+      - type: path
+        style: powerline
+        template: " {{ .AbsolutePWD }} "
+        powerline_symbol: ""
+        foreground: "#E8F1F2"
+        background: "#13293D"
