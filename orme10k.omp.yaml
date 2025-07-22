@@ -20,10 +20,10 @@ blocks:
         leading_diamond: "\ue0c5"
         template: "{{ if .SSHSession }} {{ .UserName }}@{{ .HostName }} {{ else }} {{.HostName}} {{ end }}"
         foreground_templates: 
-          - "{{if .SSHSession}}#0E131F{{end}}"
+          - "{{if .SSHSession}}#14213D{{end}}"
         background_templates: 
-          - "{{if .SSHSession}}#14453D{{end}}"
-        foreground: "#FCA311"
+          - "{{if .SSHSession}}#FCA311{{end}}"
+        foreground: "#3DA35D"
         background: "#0E131F"
       - type: path
         style: powerline
