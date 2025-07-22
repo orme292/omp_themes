@@ -16,11 +16,12 @@ blocks:
     segments:
       - type: session
         style: powerline
-        leading_diamond: "\ue0c5"
-        template: " {{ if .SSHSession }} {{ .UserName}}@{{ end }}{{ .HostName }} "
         powerline_symbol: ""
-        foreground: "#E8F1F2"
-        background: "#006494"
+        leading_diamond: "\ue0c5"
+        when: "{{ .SSHSession }}"
+        template: " {{ .UserName}}@{{ .HostName }} "
+        foreground: "#8ECAE6"
+        background: "#FB8500"
       - type: path
         style: powerline
         template: " {{ .AbsolutePWD }} "
