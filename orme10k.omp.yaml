@@ -14,6 +14,16 @@ blocks:
     newline: true
     alignment: left
     segments:
+      - type: os
+        style: powerline
+        powerline_symbol: ""
+        template: "{{ .Icon }}"
+        foreground: "#3DA35D"
+        background: "#0E131F"
+        foreground_templates: 
+          - "{{if .SSHSession}}#14213D{{end}}"
+        background_templates: 
+          - "{{if .SSHSession}}#FCA311{{end}}"
       - type: session
         style: powerline
         powerline_symbol: ""
