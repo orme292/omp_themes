@@ -9,6 +9,8 @@ palette: # https://coolors.co
   yellor: "#FCA311"
   ssh-fg: "#14213D"
   mgreen: "#3DA35D"
+  ltgreen: "#96E072"
+  drkgreen: "#212922"
   blublack: "#0E131F"
   drkblue: "#13293D"
   gitblue: "#3D3B8E"
@@ -59,9 +61,9 @@ blocks:
         powerline_symbol: ""
         leading_diamond: "\ue0c5"
         foreground_templates: 
-          - "{{if .SSHSession}}p:ssh-fg{{end}}"
+          - "{{if .SSHSession}}p:ltgreen{{end}}"
         background_templates: 
-          - "{{if .SSHSession}}p:yellor{{end}}"
+          - "{{if .SSHSession}}p:drkgreen{{end}}"
         foreground: p:mgreen
         background: p:blublack
         template: "{{ if .SSHSession }} {{ .UserName }}@{{ .HostName }} {{ else }} {{.HostName}} {{ end }}"
