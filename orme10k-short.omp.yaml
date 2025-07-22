@@ -23,7 +23,6 @@ palette: # https://coolors.co
 blocks:
   - type: rprompt
     segments:
-
     - type: python
       style: powerline
       powerline_symbol: 
@@ -70,9 +69,8 @@ blocks:
         style: powerline
         powerline_symbol: ""
         properties:
-          style: folder
+          style: agnoster_short
           display_root: true
-          hide_root_location: true
           max_depth: 1
         foreground: p:ltwhite
         background: p:drkblue
