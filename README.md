@@ -2,8 +2,11 @@
 
 Why so many bright colors in all the oh-my-posh themes?
 
+---
+
 ### orme10k
 
+![alt text][orme10k]
 Based on the p10k theme for oh-my-zsh
 
 Supports:
@@ -20,6 +23,8 @@ eval "$(oh-my-posh init zsh --config https://raw.githubusercontent.com/orme292/o
 
 ### orme10k-short
 
+![alt text][orme10kshort]
+
 The slightly shorter version of orme10k, for the smaller screens
 
 - git
@@ -30,3 +35,10 @@ The slightly shorter version of orme10k, for the smaller screens
 ```bash
 eval "$(oh-my-posh init zsh --config https://raw.githubusercontent.com/orme292/omp_themes/refs/heads/master/orme10k-short.omp.yaml)"
 ```
+
+[orme10k]: https://github.com/orme292/omp_themes/blob/e1541005ba97fb1fe3bb031cddd33fb4bea2bbd5/assets/orme10k.png "orme10k, iTerm2, RobotoMono Nerd"
+[orme10kshort]: https://github.com/orme292/omp_themes/blob/e1541005ba97fb1fe3bb031cddd33fb4bea2bbd5/assets/orme10k-short.png "orme10k-short, iTerm2, RobotoMono Nerd"
+
+---
+
+> The font in each sample image is RobotoMono Nerd.
