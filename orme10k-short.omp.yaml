@@ -13,7 +13,8 @@ palette: # https://coolors.co
   drkblue: "#13293D"
   gitblue: "#3D3B8E"
   gitdkblue: "#2A2865"
-  gitbehind: "#4543B9"
+  gitahead: "#0B6E4F"
+  gitbehind: "#5B1E1D"
   txtblue: "#14213D"
   time: "#007ACC"
   env-fg: "#F1EDEE"
@@ -32,7 +33,6 @@ blocks:
       template: "{{ if .Error }} {{ .Error }} {{ else }} Python {{ .Major }}.{{ .Minor }} {{ end }}"
     - type: executiontime
       style: powerline
-      powerline_symbol: ""
       properties:
         threshold: 100
         style: austin
@@ -42,7 +42,7 @@ blocks:
     - type: time
       style: plain
       properties:
-        time_format: 3:04
+        time_format: 15:04
       foreground: p:time
       template: " {{ .CurrentDate | date .Format }} "
   - type: prompt
@@ -70,9 +70,10 @@ blocks:
         style: powerline
         powerline_symbol: ""
         properties:
-          style: agnoster_short
+          style: folder
           display_root: true
-          max_depth: 4
+          hide_root_location: true
+          max_depth: 1
         foreground: p:ltwhite
         background: p:drkblue
       - type: git
@@ -81,7 +82,7 @@ blocks:
         leading_diamond: "\ue0c5"
         background: p:gitblue
         foreground: p:ltwhite
-        template: " {{ .Ref }}{{ if gt .StashCount 0 }}*{{end}}{{ if gt .Working.Untracked 0 }}?{{ end }}{{ if gt .Ahead 0 }} \u2191{{ .Ahead }}{{ end }}{{ if gt .Staging.Added 0 }} +{{ end }}{{ if gt .Staging.Modified 0 }} ~{{ end }} "
+        template: " {{ .Ref }}{{ if gt .StashCount 0 }}*{{end}} {{ if gt .Working.Untracked 0 }}?{{ end }}{{ if gt .Ahead 0 }}<p:ltwhite,p:gitahead>\u2191</>{{ end }}{{ if gt .Behind 0 }}<p:ltwhite,p:gitbehind>\u2193</>{{ end }}{{ if gt .Staging.Added 0 }} +{{ end }}{{ if gt .Staging.Modified 0 }} ~{{ end }} "
         properties:
           fetch_status: true
           fetch_upstream_icon: true
@@ -90,9 +91,9 @@ blocks:
         style: powerline
         powerline_symbol: ""
         leading_diamond: "\ue0c5"
-        background: p:gitbehind
+        background: p:gitdkblue
         foreground: p:ltwhite
-        template: "{{ if gt .Working.Modified 0 }} u~{{ end }}{{ if gt .Behind 0 }} \u2193{{ .Behind }}{{ end }} "
+        template: "{{ if gt .Working.Modified 0 }} u~ {{ end }}"
         properties:
           fetch_status: true
           source: cli
