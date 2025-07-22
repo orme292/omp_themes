@@ -18,9 +18,13 @@ blocks:
         style: powerline
         powerline_symbol: ""
         leading_diamond: "\ue0c5"
-        template: "{{ if .SSHSession }} {{ .UserName }}@{{ .HostName }} {{ end }}"
-        foreground: "#023047"
-        background: "#FB8500"
+        template: "{{ if .SSHSession }} {{ .UserName }}@{{ .HostName }} {{ else }} {{.HostName}} {{ end }}"
+        foreground_templates: 
+          - "{{if .SSHSession}}#0E131F{{end}}"
+        background_templates: 
+          - "{{if .SSHSession}}#FB8500{{end}}"
+        foreground: "#3DA35D"
+        background: "#0E131F"
       - type: path
         style: powerline
         template: " {{ .AbsolutePWD }} "
