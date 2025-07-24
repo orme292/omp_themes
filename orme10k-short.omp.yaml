@@ -25,51 +25,51 @@ palette: # https://coolors.co
 blocks:
   - type: rprompt
     segments:
-    - type: python
-      style: powerline
-      powerline_symbol: 
-      background: p:python
-      properties:
-        fetch_version: true
-      template: "{{ if .Error }} {{ .Error }} {{ else }} Python {{ .Major }}.{{ .Minor }} {{ end }}"
-    - type: executiontime
-      style: powerline
-      properties:
-        threshold: 100
-        style: austin
-        always_enabled: false
-      foreground: p:txtblue
-      background: p:vwhite
-    - type: time
-      style: plain
-      properties:
-        time_format: 15:04
-      foreground: p:time
-      template: " {{ .CurrentDate | date .Format }} "
+      - type: python
+        style: powerline
+        powerline_symbol: "\ue0b0"
+        background: p:python
+        properties:
+          fetch_version: true
+        template: "{{ if .Error }} {{ .Error }} {{ else }} Python {{ .Major }}.{{ .Minor }} {{ end }}"
+      - type: executiontime
+        style: powerline
+        properties:
+          threshold: 100
+          style: austin
+          always_enabled: false
+        foreground: p:txtblue
+        background: p:vwhite
+      - type: time
+        style: plain
+        properties:
+          time_format: 15:04
+        foreground: p:time
+        template: " {{ .CurrentDate | date .Format }} "
   - type: prompt
     newline: true
     alignment: left
     segments:
       - type: root
         style: powerline
-        powerline_symbol: ""
+        powerline_symbol: "\ue0b0"
         leading_diamond: "\ue0c5"
         foreground: p:white
         background: p:alert
       - type: session
         style: powerline
-        powerline_symbol: ""
+        powerline_symbol: "\ue0b0"
         leading_diamond: "\ue0c5"
-        foreground_templates: 
+        foreground_templates:
           - "{{if .SSHSession}}p:ltgreen{{end}}"
-        background_templates: 
+        background_templates:
           - "{{if .SSHSession}}p:drkgreen{{end}}"
         foreground: p:mgreen
         background: p:blublack
-        template: "{{ if .SSHSession }} {{ .UserName }}@{{ .HostName }} {{ else }} {{.HostName}} {{ end }}"
+        template: " {{ if not .Root }}{{ .UserName }}{{ end }}{{ if .SSHSession}}{{ if not .Root }}@{{ .HostName }}{{ end }}{{ end }} "
       - type: path
         style: powerline
-        powerline_symbol: ""
+        powerline_symbol: "\ue0b0"
         properties:
           style: agnoster_short
           display_root: true
@@ -78,7 +78,7 @@ blocks:
         background: p:drkblue
       - type: git
         style: powerline
-        powerline_symbol: ""
+        powerline_symbol: "\ue0b0"
         leading_diamond: "\ue0c5"
         background: p:gitblue
         foreground: p:ltwhite
@@ -89,7 +89,7 @@ blocks:
           source: cli
       - type: git
         style: powerline
-        powerline_symbol: ""
+        powerline_symbol: "\ue0b0"
         leading_diamond: "\ue0c5"
         background: p:gitdkblue
         foreground: p:ltwhite

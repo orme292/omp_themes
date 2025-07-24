@@ -9,6 +9,8 @@ palette: # https://coolors.co
   yellor: "#FCA311"
   ssh-fg: "#14213D"
   mgreen: "#3DA35D"
+  ltgreen: "#96E072"
+  drkgreen: "#212922"
   blublack: "#0E131F"
   drkblue: "#13293D"
   gitblue: "#3D3B8E"
@@ -22,33 +24,33 @@ palette: # https://coolors.co
 blocks:
   - type: rprompt
     segments:
-    - type: project
-      style: powerline
-      powerline_symbol: ""  
-      foreground: p:env-fg
-      background: p:env-bg  
-    - type: python
-      style: powerline
-      powerline_symbol: 
-      background: p:python
-      properties:
-        fetch_version: true
-      template: "{{ if .Error }} {{ .Error }} {{ else }} Python {{ .Full }} {{ end }}"
-    - type: executiontime
-      style: powerline
-      powerline_symbol: ""
-      properties:
-        threshold: 100
-        style: austin
-        always_enabled: false
-      foreground: p:txtblue
-      background: p:vwhite
-    - type: time
-      style: plain
-      properties:
-        time_format: 3:04:05PM
-      foreground: p:time
-      template: " {{ .CurrentDate | date .Format }} "
+      - type: project
+        style: powerline
+        powerline_symbol: ""
+        foreground: p:env-fg
+        background: p:env-bg
+      - type: python
+        style: powerline
+        powerline_symbol: 
+        background: p:python
+        properties:
+          fetch_version: true
+        template: "{{ if .Error }} {{ .Error }} {{ else }} Python {{ .Full }} {{ end }}"
+      - type: executiontime
+        style: powerline
+        powerline_symbol: ""
+        properties:
+          threshold: 100
+          style: austin
+          always_enabled: false
+        foreground: p:txtblue
+        background: p:vwhite
+      - type: time
+        style: plain
+        properties:
+          time_format: 3:04:05PM
+        foreground: p:time
+        template: " {{ .CurrentDate | date .Format }} "
   - type: prompt
     newline: true
     alignment: left
@@ -63,13 +65,13 @@ blocks:
         style: powerline
         powerline_symbol: ""
         leading_diamond: "\ue0c5"
-        foreground_templates: 
-          - "{{if .SSHSession}}p:ssh-fg{{end}}"
-        background_templates: 
-          - "{{if .SSHSession}}p:yellor{{end}}"
+        foreground_templates:
+          - "{{if .SSHSession}}p:ltgreen{{end}}"
+        background_templates:
+          - "{{if .SSHSession}}p:drkgreen{{end}}"
         foreground: p:mgreen
         background: p:blublack
-        template: "{{ if .SSHSession }} {{ .UserName }}@{{ .HostName }} {{ else }} {{.HostName}} {{ end }}"
+        template: " {{ if not .Root }}{{ .UserName }}{{ end }}{{ if .SSHSession}}{{ if not .Root }}@{{ .HostName }}{{ end }}{{ end }} "
       - type: path
         style: powerline
         powerline_symbol: ""
